@@ -1,15 +1,15 @@
 require('dotenv').config();
+const PORT = process.env.PORT || 4000;
 const express = require('express');
 const mongoose = require('mongoose');
 const todoController = require('./controllers/todoController');
-const PORT = process.env.PORT || 4000;
 
 const server = express();
 server.use(express.json());
 
-server.listen(4000, function(){
+server.listen(PORT, function(){
     console.log('Server has started to run...');
-    mongoose.connect(process.env.ATLAS_URL)
+    mongoose.connect(process.env.DB_URL)
     .then(function(){
         console.log('DB is connected');
         server.get('/', function(req, res){
