@@ -4,7 +4,7 @@
   "description": "A basic node app for our todo",
   "main": "express_app.js",
   "scripts": {
-    "app": "nodemon express_app.js"
+    "start": "node express_app.js"
   },
   "keywords": [],
   "author": "Isaac",
