@@ -1,10 +1,10 @@
 require('dotenv').config();
-const PORT = process.env.PORT || 4000;
 const express = require('express');
+const server = express();
+const PORT = process.env.PORT || 4000;
 const mongoose = require('mongoose');
 const todoController = require('./controllers/todoController');
 
-const server = express();
 server.use(express.json());
 
 server.listen(PORT, function(){
