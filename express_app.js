@@ -3,11 +3,11 @@ const express = require('express');
 const mongoose = require('mongoose');
 const todoController = require('./controllers/todoController');
 const PORT = process.env.PORT || 4000;
-const server = express();
 
+const server = express();
 server.use(express.json());
 
-server.listen(PORT, function(){
+server.listen(4000, function(){
     console.log('Server has started to run...');
     mongoose.connect(process.env.ATLAS_URL)
     .then(function(){
