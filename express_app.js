@@ -8,7 +8,7 @@ const server = express();
 server.use(express.json());
 
 server.listen(PORT, function(){
-    console.log('Server has started to run in express');
+    console.log('Server has started to run...');
     mongoose.connect(process.env.ATLAS_URL)
     .then(function(){
         console.log('DB is connected');
