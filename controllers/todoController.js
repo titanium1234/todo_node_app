@@ -15,18 +15,28 @@ async function insertTodo(req, res){
     });
 }
 
-function updateTodoById(req, res){
-    // const { id } = req.params;
-    const id = req.params.id;
-    const { isCompleted } = req.body;
-    todo.findByIdAndUpdate(id, {isCompleted: isCompleted})
-    .then(function(data){
-        res.status(200).json({success: true, message: 'Todo updated successfully', data})
-    })
-    .catch(function(err){
-        res.status(404).json({success: false, message: 'Todo cant update. Try again'});
-    })
+async function updateTodoById(req, res){
+    console.log(this);
+    try {
+        const id = req.params.id;
+        const { isCompleted } = req.body;
+        await todo.findByIdAndUpdate(id, {isCompleted: isCompleted})
+        res.status(200).json({success: true, message: 'Todo updated successfully'})
+    } catch (error) {        
+        res.status(404).json({success: false, message: 'Todo cant update. Try again', error});
+    }
 }
+
+// const updateTodoById = async (req, res) => {
+//     try {
+//         const id = req.params.id;
+//         const { isCompleted } = req.body;
+//         await todo.findByIdAndUpdate(id, {isCompleted: isCompleted})
+//         res.status(200).json({success: true, message: 'Todo updated successfully'})
+//     } catch (error) {        
+//         res.status(404).json({success: false, message: 'Todo cant update. Try again', error});
+//     }
+// }
 
 function deleteTodoById(req, res){
     const { id } = req.params;
@@ -40,20 +50,23 @@ function deleteTodoById(req, res){
     })
 }
 
-function getTodoById(req, res){
+async function getTodoById(req, res){
     // const { id } = req.params;
-    const id = req.params.id;
-    todo.findById(id)
-    .then(function(data){
+    try {
+        const id = req.params.id;
+        const data = await todo.findById(id);
         res.status(200).json({
             success: true, data
         })
-    })
-    .catch(function(error){
+    } catch (err) {
         res.status(404).json({
             success: false, error: 'Cant get data: '+ err.message
         })  
-    });
+    }
+    // .then(function(data){
+    // })
+    // .catch(function(error){
+    // });
 }
 
 function getAllTodos(req, res){
