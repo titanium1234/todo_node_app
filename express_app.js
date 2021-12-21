@@ -4,8 +4,6 @@ const mongoose = require('mongoose');
 const todoController = require('./controllers/todoController');
 const PORT = process.env.PORT || 4000;
 const server = express();
-// const mongo_db_url = '';
-// const mongo_db_url = 'mongodb://localhost/todos_db';
 
 server.use(express.json());
 
